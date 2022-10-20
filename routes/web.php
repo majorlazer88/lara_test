@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('market');
+})->name('market');
 
 Route::middleware([
     'auth:sanctum',
@@ -23,6 +23,6 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('dashboard', ['name' => 'Motherlink']);
     })->name('dashboard');
 });
