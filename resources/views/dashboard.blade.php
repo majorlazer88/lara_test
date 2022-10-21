@@ -1,15 +1,17 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
-    {{-- <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-jet-welcome />
-            </div>
-        </div>
-    </div> --}}
-</x-app-layout>
+<x-ml-app-layout>
+    {{ __('Main entrypoint') }}
+    <hr/>
+    @php
+        $selectedIndex = 3;
+    @endphp
+    <label>Select page
+        <x-ml-html-elements::select id="selectPage" name="select">
+            @for ($i=1; $i<10; $i++)
+                @php $selected = $selectedIndex === $i ? 'selected' : '' @endphp
+                <x-ml-html-elements::select.option :index="$i" :selected="$selected">
+                    {{'Page ' . $i}}
+                </x-ml-html-elements::select.option>
+            @endfor
+        </x-ml-html-elements::select>
+    </label>
+</x-ml-app-layout>
