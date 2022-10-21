@@ -23,7 +23,7 @@ class Alert extends Component
         $this->value = $value;
     }
 
-        /**
+    /**
      * The properties / methods that should not be exposed to the component template.
      *
      * @var array

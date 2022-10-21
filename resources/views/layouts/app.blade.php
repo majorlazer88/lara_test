@@ -163,7 +163,7 @@
                 $camelCase = "camel case variable";
                 $value = true;
             @endphp
-            // To display a component, you may use a Blade component tag within one of your Blade templates.
+            {{-- To display a component, you may use a Blade component tag within one of your Blade templates. --}}
             {{-- <x-alert alert-type="danger" data-controller="profile-apended" type="error" :message="$message" :$camelCase :$value class="mt-4"/> --}}
             <x-alert alert-type="danger" data-controller="profile-apended" type="error" :message="$message" :$camelCase :$value class="mt-4">
                 <x-slot:heading class="font-bold">
@@ -176,6 +176,18 @@
                 <strong>Whoops!</strong> Something went wrong!
             </x-alert>
 
+            {{-- Anonymous components --}}
+            @php
+                $selectedIndex = 3;
+            @endphp
+            <x-ml-html-elements::select id="select" name="select">
+                @for ($i=1; $i<10; $i++)
+                    @php $selected = $selectedIndex === $i ? 'selected' : '' @endphp
+                    <x-ml-html-elements::select.option :index="$i" :selected="$selected">
+                        {{'Option ' . $i}}
+                    </x-ml-html-elements::select.option>
+                @endfor
+            </x-select>
 
             <!-- Page Content -->
             {{-- <main>
@@ -188,7 +200,7 @@
         @livewireScripts
         <script>
             var app = {{Js::from(['a', 'b'])}};
-            console.log('using Laravel facade to encode php array and decode back using JSON.parse' app);
+            console.log('using Laravel facade to encode php array and decode back using JSON.parse', app);
         </script>
     </body>
 </html>
