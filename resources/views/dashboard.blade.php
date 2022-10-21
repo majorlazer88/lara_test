@@ -1,17 +1,17 @@
 <x-ml-app-layout>
     {{ __('Main entrypoint') }}
+    <x-slot:what-next>
+        What next?!
+    </x-slot>
     <hr/>
-    @php
-        $selectedIndex = 3;
-    @endphp
-    <label>Select page
-        <x-ml-html-elements::select id="selectPage" name="select">
-            @for ($i=1; $i<10; $i++)
-                @php $selected = $selectedIndex === $i ? 'selected' : '' @endphp
-                <x-ml-html-elements::select.option :index="$i" :selected="$selected">
-                    {{'Page ' . $i}}
+    <label>Select link
+        <x-ml-html-elements::select id="selectLink" name="select-link">
+            @foreach ($links as $link)
+                @php $selected = $loop->first === $loop->index ? 'selected' : '' @endphp
+                <x-ml-html-elements::select.option :index="$loop->index" :selected="$selected">
+                    {{$link->domain . ' Id: ' . $loop->index . ' ' . 'Price: ' . $link->platform_price . ''}}
                 </x-ml-html-elements::select.option>
-            @endfor
+            @endforeach
         </x-ml-html-elements::select>
     </label>
 </x-ml-app-layout>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\DomainsDb;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    $links = DomainsDb::all();
+    return view('dashboard', ['links' => $links]);
 })->name('dashboard');
 
 // Route::middleware([

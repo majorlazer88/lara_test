@@ -25,5 +25,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Blade::anonymousComponentNamespace('elements.ml.components', 'ml-html-elements');
+        // $expression should be an instance of DateTime
+        Blade::directive('datetime', function ($expression) {
+            return "<?php echo ($expression)->format('m/d/Y H:i'); ?>";
+        });
+        Blade::if('disk', function ($value) {
+            return config('filesystems.default') === $value;
+        });
     }
 }
