@@ -4,7 +4,7 @@
         What next?!
     </x-slot>
     <hr/>
-    @if(!empty($links))
+    @if(!$links->isEmpty())
         <label>Select link
             <x-ml-html-elements::select id="selectLink" name="select-link">
                 @foreach ($links as $link)
