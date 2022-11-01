@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Laravel\Jetstream\Features;
+use Illuminate\Support\Carbon;
 
 class UserFactory extends Factory
 {
@@ -25,11 +26,23 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail(),
+            'name' => fake()->name(),
+            'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
+            'user_referral' => fake()->imageUrl(360, 360, 'animals', true, 'dogs', true, 'jpg'),
+            'user_suspension_timestamp' => Carbon::createFromFormat('Y-m-d H:i:s', '2019-02-01 03:45:27', 'Europe/Tallinn'),
+            'user_created_timeTz' => fake()->time(),
+            'user_created_time' => fake()->time(),
+            'user_total_amount_spent_float' => fake()->randomFloat(1, 10, 2),
+            'user_total_amount_spent_decimal' => 0,
+            'user_total_amount_spent_double' => 0,
+            'flavors' => "strawberry",
+            'visitor' => fake()->ipv4(),
+            'char' => fake()->randomLetter(),
+            'uuid' => fake()->uuid(),
+            'photo_bin' => fake()->md5()
         ];
     }
 
