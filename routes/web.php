@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\UserController;
 use App\Models\DomainsDb;
+use Illuminate\Support\Collection;
+use Illuminate\Support\LazyCollection;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,3 +38,51 @@ Route::get('/users/update/{recipient_id}', [UserController::class, 'update'])
 //         return view('dashboard', ['name' => 'Motherlink']);
 //     })->name('dashboard');
 // });
+
+Route::get('/lazy', function () {
+    // $collection = Collection::times(1000000)
+    //     ->map(function ($number) {
+    //         return pow(2, $number);
+    //     })
+    //     ->all();
+
+    $collection = LazyCollection::times(1000000)
+        ->map(function ($number) {
+            return pow(2, $number);
+        })
+        ->all();
+
+    return 'Done!';
+});
+
+Route::get('/generator', function () {
+    function notHappyFunction($number) {
+        $return = [];
+
+        for ($i = 1; $i < $number; $i++) {
+            $return[] = $i;
+        }
+
+        return $return;
+    }
+
+    function happyFunction($number) {
+        for ($i = 1; $i < $number; $i++) {
+            yield $i;
+        }
+    }
+
+    // foreach (notHappyFunction(10000000) as $number) {
+    //     if ($number % 1000 == 0) {
+    //         dump('hello');
+    //     }
+    // }
+
+    foreach (HappyFunction(10000000) as $number) {
+        if ($number % 1000 == 0) {
+            dump('hello');
+        }
+    }
+
+    // return get_class_methods(happyFunction("Syper Happy"));
+});
