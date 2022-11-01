@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('company_name', 50);
             $table->string('company_address', 70);
             $table->string('city', 40);
-            $table->string('country', 50);
+            $table->string('country', 100);
             $table->string('state', 40);
             $table->string('zip_code', 10);
             $table->string('vat_number', 50);
@@ -29,6 +29,7 @@ return new class extends Migration
             $table->decimal('balance', 10, $place = 2)->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
+            $table->softDeletes();
         });
     }
 

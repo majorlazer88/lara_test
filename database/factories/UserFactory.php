@@ -42,7 +42,7 @@ class UserFactory extends Factory
             'visitor' => fake()->ipv4(),
             'char' => fake()->randomLetter(),
             'uuid' => fake()->uuid(),
-            'photo_bin' => fake()->md5()
+            'photo_bin' => fake()->md5(),
         ];
     }
 
