@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Livewire\Weather;
 use App\Models\DomainsDb;
 use Illuminate\Support\Collection;
 use Illuminate\Support\LazyCollection;
@@ -86,3 +87,5 @@ Route::get('/generator', function () {
 
     // return get_class_methods(happyFunction("Syper Happy"));
 });
+
+Route::get('/weather', Weather::class);
