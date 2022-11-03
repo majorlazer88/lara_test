@@ -9,6 +9,10 @@ class Recipient extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'company_name', 'company_address'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class)->withDefault();
