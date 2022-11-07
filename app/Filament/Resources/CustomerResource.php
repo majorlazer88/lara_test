@@ -26,6 +26,8 @@ class CustomerResource extends Resource
     protected static ?string $pluralModelLabel = 'Platform users';
     protected static ?string $navigationLabel = 'Our customer';
 
+    protected static ?string $slug = 'customer';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -72,6 +74,7 @@ class CustomerResource extends Resource
             'create' => Pages\CreateCustomer::route('/create'),
             'view' => Pages\ViewCustomer::route('/{record}'),
             'edit' => Pages\EditCustomer::route('/{record}/edit'),
+            'info' => Pages\InfoCustomer::route('/info')
         ];
     }
 }
