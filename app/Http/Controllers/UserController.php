@@ -44,6 +44,6 @@ class UserController extends Controller
         //     abort(403);
         // };
 
-        return 'can update';
+        return 'can update user with ID: ' . $recipient_id;
     }
 }

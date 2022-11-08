@@ -8,14 +8,11 @@ use App\Interfaces\PaymentGatewayContractInterface;
 
 class BankPaymentGateway implements PaymentGatewayContractInterface
 {
-    private $users;
-    private $currency;
-    private $discount;
-
-    public function __construct($currency, UserRepository $users) {
-        $this->users = $users;
-        $this->currency = $currency;
-        $this->discount = 0;
+    public function __construct(
+        private string $currency,
+        private UserRepository $users,
+        private int $discount = 0
+    ) {
     }
 
     public function setDiscount($amount)
