@@ -10,6 +10,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use App\Interfaces\PaymentGatewayContractInterface;
 use App\Http\View\Composers\UserComposer;
+use Illuminate\Database\Eloquent\Model;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -60,5 +61,14 @@ class AppServiceProvider extends ServiceProvider
         // ['users.*', 'channel.index']
         // Refactor create catalogs in resources/views
         View::composer(['components.users'], UserComposer::class);
+
+        // As these are concerned with application correctness,
+        // leave them enabled all the time.
+        Model::preventAccessingMissingAttributes();
+        Model::preventSilentlyDiscardingAttributes();
+
+        // Since this is a performance concern only, don't halt
+        // production for violations.
+        // Model::preventLazyLoading(!$this->app->isProduction());
     }
 }
