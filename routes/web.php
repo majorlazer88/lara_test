@@ -6,6 +6,7 @@ use App\Models\DomainsDb;
 use Illuminate\Support\Collection;
 use Illuminate\Support\LazyCollection;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContestEntryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,3 +90,6 @@ Route::get('/generator', function () {
 });
 
 Route::get('/weather', Weather::class);
+
+Route::get('/contest', [ContestEntryController::class, 'index']);
+Route::post('/contest', [ContestEntryController::class, 'store']);

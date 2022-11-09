@@ -17,13 +17,14 @@
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
-        <div class="font-sans text-gray-900 antialiased">
+        {{-- <div class="font-sans text-gray-900 antialiased">
             <h1>{{ __('Dashboard') }}</h1>
             <hr/>
             {{ $whatNext ?? 'Missing' }}
             <hr>
             {{$slot}}
-        </div>
+        </div> --}}
+        {{$slot}}
         @livewireScripts
     </body>
 </html>

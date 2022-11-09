@@ -2,10 +2,15 @@
 
 namespace App\Providers;
 
+use App\Events\NewEntryReceivedEvent;
+use App\Listeners\WelcomeContestEntryNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use function Illuminate\Events\queueable;
+use App\Events\PaymentDiscountSet;
+use App\Listeners\Payment;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -18,6 +23,12 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        NewEntryReceivedEvent::class => [
+            WelcomeContestEntryNotification::class,
+        ],
+        PaymentDiscountSet::class => [
+            Payment::class,
+        ]
     ];
 
     /**
@@ -27,7 +38,16 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // Event::listen(
+        //     PaymentDiscountSet::class, [Payment::class, '']
+        // );
+
+        // Event::listen(queueable(function (PaymentDiscountSet $event) {
+        //     //
+        // })->onConnection('database')->onQueue('default')->delay(now()->addSecond(10))
+        // ->catch(function (PaymentDiscountSet $event, \Throwable $e) {
+
+        // }));
     }
 
     /**
