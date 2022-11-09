@@ -24,7 +24,6 @@ class UserController extends Controller
 
         $order = $details->all();
         $payment = $payment->charge($amount);
-        // dd($order, $payment);
 
         return view('components.users', [
             'payment' => $payment,
